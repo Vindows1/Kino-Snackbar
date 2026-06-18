@@ -35,6 +35,7 @@ private SnacksRepository snacksRepository;
 
 @PostMapping("/bestellungen/add")
 public ResponseEntity<BestellungDTO> createBestellung(@RequestBody Bestellung neueBestellung) {
+    System.out.println("DEBUG: Suche Getraenk mit ID: " + neueBestellung.getGetraenk().getId());
     var getraenke = getraenkeRepository.findById(neueBestellung.getGetraenk().getId()).orElseThrow();
     var snack = snacksRepository.findById(neueBestellung.getSnack().getId()).orElseThrow();
 

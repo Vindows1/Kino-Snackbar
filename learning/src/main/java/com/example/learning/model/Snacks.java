@@ -10,7 +10,7 @@ import lombok.Data;
 public class Snacks {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private long id;
 
     private String name;
     private int preis;
