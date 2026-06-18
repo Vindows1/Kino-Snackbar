@@ -6,7 +6,7 @@ interface BestellungFormProps {
 
 // @ts-ignore
 export const BestellungForm = ({ onBestellungCreated }: BestellungFormProps) => {
-    const [getraenkId, setGetraenkId] = useState(1);
+    const [getraenkeId, setGetraenkId] = useState(1);
     const [snackId, setSnackId] = useState(1);
     const [gMenge, setGMenge] = useState(1);
     const [sMenge, setSMenge] = useState(1);
@@ -17,7 +17,7 @@ export const BestellungForm = ({ onBestellungCreated }: BestellungFormProps) => 
         const neueBestellung = {
             G_menge: gMenge,
             S_menge: sMenge,
-            getraenk: { id: getraenkId },
+            getraenk: { id: getraenkeId },
             snack: { id: snackId }
         };
 
@@ -41,8 +41,8 @@ export const BestellungForm = ({ onBestellungCreated }: BestellungFormProps) => 
     return (
         <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '10px', marginBottom: '30px', alignItems: 'flex-end' }}>
             <div>
-                <label>Getränk-ID: </label>
-                <input type="number" value={getraenkId}  min={1} max={4} onChange={e => setGetraenkId(Number(e.target.value))} />
+                <label>Getraenk-ID: </label>
+                <input type="number" value={getraenkeId}  min={1} max={4} onChange={e => setGetraenkId(Number(e.target.value))} />
             </div>
             <div>
                 <label>Menge G: </label>

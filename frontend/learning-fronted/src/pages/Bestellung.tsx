@@ -18,7 +18,6 @@ export const Bestellung = () => {
     return (
         <div style={{ padding: '20px' }}>
             <h2>Neue Bestellung aufgeben</h2>
-            {/* Formular einbinden und ladeBestellungen als Callback mitgeben */}
             <BestellungForm onBestellungCreated={ladeBestellungen} />
 
             <hr />

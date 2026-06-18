@@ -1,9 +1,9 @@
 export interface SingleBestellung{
     Id: number;
-    Wunsch_G: String;
-    Wunsch_S: String;
-    G_menge: number;
-    S_menge: number;
+    wunsch_G: String;
+    wunsch_S: String;
+    g_menge: number;
+    s_menge: number;
     gesamtpreis: number;
 }
 
@@ -22,10 +22,10 @@ export const BestellungenList=(props: {bestellung: SingleBestellung[]})=>{
                             border: '1px solid #ccc'
                         }}
                     >
-                        <span>{singlebestellung.Wunsch_G}</span>
-                        <span style={{ textAlign: 'left'}} >{singlebestellung.G_menge}</span>
-                        <span>{singlebestellung.Wunsch_S}</span>
-                        <span style={{ textAlign: 'left'}} >{singlebestellung.S_menge}</span>
+                        <span>{singlebestellung.wunsch_G}</span>
+                        <span style={{ textAlign: 'left'}} >{singlebestellung.g_menge}</span>
+                        <span>{singlebestellung.wunsch_S}</span>
+                        <span style={{ textAlign: 'left'}} >{singlebestellung.s_menge}</span>
                         <span style={{ textAlign: 'right'}}>{singlebestellung.gesamtpreis} €</span>
 
                     </div>

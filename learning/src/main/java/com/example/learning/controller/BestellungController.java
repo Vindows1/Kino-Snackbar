@@ -35,12 +35,12 @@ private SnacksRepository snacksRepository;
 
 @PostMapping("/bestellungen/add")
 public ResponseEntity<BestellungDTO> createBestellung(@RequestBody Bestellung neueBestellung) {
-    var getraenk = getraenkeRepository.findById(neueBestellung.getGetraenk().getId()).orElseThrow();
+    var getraenke = getraenkeRepository.findById(neueBestellung.getGetraenk().getId()).orElseThrow();
     var snack = snacksRepository.findById(neueBestellung.getSnack().getId()).orElseThrow();
 
-    neueBestellung.setWunsch_G(getraenk.getName());
+    neueBestellung.setWunsch_G(getraenke.getName());
     neueBestellung.setWunsch_S(snack.getName());
-    neueBestellung.setGetraenk(getraenk);
+    neueBestellung.setGetraenk(getraenke);
     neueBestellung.setSnack(snack);
     Bestellung gespeicherteBestellung = bestellungRepository.save(neueBestellung);
     return ResponseEntity.ok(new BestellungDTO(gespeicherteBestellung));

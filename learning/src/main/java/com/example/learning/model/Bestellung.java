@@ -11,8 +11,8 @@ public class Bestellung {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
-    private String Wunsch_G;
-    private String Wunsch_S;
+    private String wunsch_G;
+    private String wunsch_S;
     private int G_menge;
     private int S_menge;
 
