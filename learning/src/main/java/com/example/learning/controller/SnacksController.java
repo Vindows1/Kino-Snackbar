@@ -13,7 +13,7 @@ import java.util.List;
 public class SnacksController {
     @Autowired
     private SnacksRepository snacksRepository;
-
+// test
     @GetMapping("/snacks/all")
     public ResponseEntity<List<Snacks>> GetAllSnacks(){
         List<Snacks> snacks = snacksRepository.findAll();
