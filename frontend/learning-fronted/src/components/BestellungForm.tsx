@@ -45,7 +45,7 @@ export const BestellungForm = ({ onBestellungCreated }: BestellungFormProps) => 
                 <input type="number" value={getraenkeId}  min={1} max={4} onChange={e => setGetraenkId(Number(e.target.value))} />
             </div>
             <div>
-                <label>Menge G: </label>
+                <label>Menge: </label>
                 <input type="number" value={gMenge} min={0} onChange={e => setGMenge(Number(e.target.value))} />
             </div>
             <div>
@@ -53,7 +53,7 @@ export const BestellungForm = ({ onBestellungCreated }: BestellungFormProps) => 
                 <input type="number" value={snackId} min={1} max={4} onChange={e => setSnackId(Number(e.target.value))} />
             </div>
             <div>
-                <label>Menge S: </label>
+                <label>Menge: </label>
                 <input type="number" min={0} value={sMenge} onChange={e => setSMenge(Number(e.target.value))} />
             </div>
             <button type="submit">Bestellen</button>
