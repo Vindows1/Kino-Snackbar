@@ -1,0 +1,18 @@
+MERGE INTO getraenke (id, name, groeße, preis) VALUES (1, 'Cola', 0.5, 3.50);
+MERGE INTO getraenke (id, name, groeße, preis) VALUES (2, 'Fanta', 0.5, 3.50);
+MERGE INTO getraenke (id, name, groeße, preis) VALUES (3, 'Bier ',0.33, 4.00);
+MERGE INTO getraenke (id, name, groeße, preis) VALUES (4, 'Stilles Wasser',0.5, 2.80);
+MERGE INTO snacks (id, name, preis) VALUES (1, 'gesaltzenes Popcorn',5.00 );
+MERGE INTO snacks (id, name, preis) VALUES (2, 'sueßes Popcorn',5.00 );
+MERGE INTO snacks (id, name, preis) VALUES (3, 'Nachos mit Soße',7.00 );
+MERGE INTO snacks (id, name, preis) VALUES (4, 'Chips', 5.00 );
+MERGE INTO bestellung (id, Wunsch_G, Wunsch_S, G_menge, S_menge, getraenke_id, snacks_id) VALUES (3, 'Cola', 'gesaltzenes Popcorn', 2, 1, 1, 1);
+MERGE INTO bestellung (id, Wunsch_G, Wunsch_S, G_menge, S_menge, getraenke_id, snacks_id) VALUES (4, 'Fanta', 'sueßes Popcorn', 1, 2, 2, 2);
+MERGE INTO bestellung (id, Wunsch_G, Wunsch_S, G_menge, S_menge, getraenke_id, snacks_id) VALUES (5, 'Stilles Wasser', 'Nachos mit Soße', 1, 1, 4, 3);
+MERGE INTO bestellung (id, Wunsch_G, Wunsch_S, G_menge, S_menge, getraenke_id, snacks_id) VALUES (6, 'Bier', 'Chips', 6, 3, 3, 4);
+MERGE INTO bestellung (id, Wunsch_G, Wunsch_S, G_menge, S_menge, getraenke_id, snacks_id) VALUES (7, 'Fanta', 'gesaltzenes Popcorn', 3, 2, 2, 1);
+MERGE INTO bestellung (id, Wunsch_G, Wunsch_S, G_menge, S_menge, getraenke_id, snacks_id) VALUES (8, 'Cola', 'Nachos mit Soße', 1, 2, 1, 3);
+MERGE INTO bestellung (id, Wunsch_G, Wunsch_S, G_menge, S_menge, getraenke_id, snacks_id) VALUES (9, 'Stilles Wasser', 'Chips', 2, 1, 4, 4);
+MERGE INTO bestellung (id, Wunsch_G, Wunsch_S, G_menge, S_menge, getraenke_id, snacks_id) VALUES (10, 'Bier', 'sueßes Popcorn', 2, 2, 3, 2);
+MERGE INTO bestellung (id, Wunsch_G, Wunsch_S, G_menge, S_menge, getraenke_id, snacks_id) VALUES (11, 'Cola', 'sueßes Popcorn', 4, 1, 1, 2);
+MERGE INTO bestellung (id, Wunsch_G, Wunsch_S, G_menge, S_menge, getraenke_id, snacks_id) VALUES (12, 'Stilles Wasser', 'gesaltzenes Popcorn', 1, 3, 4, 1);
