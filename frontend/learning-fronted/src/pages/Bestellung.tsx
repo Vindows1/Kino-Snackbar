@@ -16,10 +16,8 @@ export const Bestellung = () => {
         ladeBestellungen();
     }, []);
     return (
-        <div style={{ padding: '20px' }}>
+        <div>
             <BestellungForm onBestellungCreated={ladeBestellungen} />
-
-            <hr />
             <BestellungenList bestellung={bestellung}/>
         </div>
     );

@@ -1,6 +1,6 @@
 #FileLock
-#Fri Jun 19 08:05:57 UTC 2026
+#Fri Jun 19 14:26:08 CEST 2026
 hostName=192.168.4.104
-id=19edee8acbda7fae3f5b666bbb3f7fcd64ceb9343b9
+id=19edfd8804eae4f40b2f06276d439173d7605e3bdaa
 method=file
-server=192.168.4.104\:49739
+server=192.168.4.104\:51505
