@@ -1,3 +1,4 @@
+import '../resources/navbar.css';
 import { useState } from 'react';
 
 interface BestellungFormProps {
@@ -39,34 +40,42 @@ export const BestellungForm = ({ onBestellungCreated }: BestellungFormProps) => 
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '10px', marginBottom: '30px', alignItems: 'flex-end' }}>
-            <div>
-                <label>Getränk: </label>
-                <select value={getraenkeId} onChange={e => setGetraenkId(Number(e.target.value))}>
-                    <option value={1}>Cola</option>
-                    <option value={2}>Fanta</option>
-                    <option value={3}>Bier</option>
-                    <option value={4}>Stilles Wasser</option>
-                </select>
-            </div>
-            <div>
-                <label>Menge: </label>
-                <input type="number" value={gMenge} min={0} onChange={e => setGMenge(Number(e.target.value))} />
-            </div>
-            <div>
-                <label>Snack: </label>
-                <select value={snackId} onChange={e => setSnackId(Number(e.target.value))}>
-                    <option value={1}>gesaltzenes Popcorn</option>
-                    <option value={2}>sueßes Popcorn</option>
-                    <option value={3}>Nachos mit Soße</option>
-                    <option value={4}>Chips</option>
-                </select>
-            </div>
-            <div>
-                <label>Menge: </label>
-                <input type="number" min={0} value={sMenge} onChange={e => setSMenge(Number(e.target.value))} />
-            </div>
-            <button type="submit">Bestellen</button>
-        </form>
+        <>                <ul className={'nav-list'}>
+            <li className={'nav-item'}><a className={'nav-link'} href={'http://localhost:5173/bestellungen/all'}>Bestellung</a></li>
+            <li className={'nav-item'}><a className={'nav-link'} href={'http://localhost:5173/snacks/all'}>Snacks</a></li>
+            <li className={'nav-item'}><a className={'nav-link'} href={'http://localhost:5173/getraenke/all'}>Getraenke</a></li>
+        </ul>
+            <div><h2>Neue Bestellung aufgeben </h2> </div>
+            <form onSubmit={handleSubmit}
+                  style={{display: 'flex', gap: '10px', marginBottom: '30px', alignItems: 'flex-end'}}>
+                <div>
+                    <label>Getränk: </label>
+                    <select value={getraenkeId} onChange={e => setGetraenkId(Number(e.target.value))}>
+                        <option value={1}>Cola</option>
+                        <option value={2}>Fanta</option>
+                        <option value={3}>Bier</option>
+                        <option value={4}>Stilles Wasser</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Menge: </label>
+                    <input type="number" value={gMenge} min={0} onChange={e => setGMenge(Number(e.target.value))}/>
+                </div>
+                <div>
+                    <label>Snack: </label>
+                    <select value={snackId} onChange={e => setSnackId(Number(e.target.value))}>
+                        <option value={1}>gesaltzenes Popcorn</option>
+                        <option value={2}>sueßes Popcorn</option>
+                        <option value={3}>Nachos mit Soße</option>
+                        <option value={4}>Chips</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Menge: </label>
+                    <input type="number" min={0} value={sMenge} onChange={e => setSMenge(Number(e.target.value))}/>
+                </div>
+                <button type="submit">Bestellen</button>
+            </form>
+        </>
     );
 };

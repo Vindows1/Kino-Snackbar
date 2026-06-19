@@ -17,7 +17,6 @@ export const Bestellung = () => {
     }, []);
     return (
         <div style={{ padding: '20px' }}>
-            <h2>Neue Bestellung aufgeben</h2>
             <BestellungForm onBestellungCreated={ladeBestellungen} />
 
             <hr />
