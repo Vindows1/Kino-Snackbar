@@ -41,16 +41,26 @@ export const BestellungForm = ({ onBestellungCreated }: BestellungFormProps) => 
     return (
         <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '10px', marginBottom: '30px', alignItems: 'flex-end' }}>
             <div>
-                <label>Getraenk-ID: </label>
-                <input type="number" value={getraenkeId}  min={1} max={4} onChange={e => setGetraenkId(Number(e.target.value))} />
+                <label>Getränk: </label>
+                <select value={getraenkeId} onChange={e => setGetraenkId(Number(e.target.value))}>
+                    <option value={1}>Cola</option>
+                    <option value={2}>Fanta</option>
+                    <option value={3}>Bier</option>
+                    <option value={4}>Stilles Wasser</option>
+                </select>
             </div>
             <div>
                 <label>Menge: </label>
                 <input type="number" value={gMenge} min={0} onChange={e => setGMenge(Number(e.target.value))} />
             </div>
             <div>
-                <label>Snack-ID: </label>
-                <input type="number" value={snackId} min={1} max={4} onChange={e => setSnackId(Number(e.target.value))} />
+                <label>Snack: </label>
+                <select value={snackId} onChange={e => setSnackId(Number(e.target.value))}>
+                    <option value={1}>gesaltzenes Popcorn</option>
+                    <option value={2}>sueßes Popcorn</option>
+                    <option value={3}>Nachos mit Soße</option>
+                    <option value={4}>Chips</option>
+                </select>
             </div>
             <div>
                 <label>Menge: </label>
