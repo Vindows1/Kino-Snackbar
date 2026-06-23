@@ -4,7 +4,7 @@ import { BestellungForm } from "../components/BestellungForm.tsx";
 
 
 export const Bestellung = () => {
-    const [bestellung, setBestellung] = useState<[]>([]);
+    const [bestellung, setBestellung] = useState<any[]>([]);
 
     const ladeBestellungen = () => {
         fetch('http://localhost:8080/bestellungen/all')

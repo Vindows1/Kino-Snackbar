@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface SnacksRepository extends JpaRepository<Snacks, Long> {
-    List<Snacks> findAll();
+   // List<Snacks> findAll();
+    Snacks findByPublicId(java.util.UUID publicId);
 }
