@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface BestellungRepository extends JpaRepository<Bestellung, Long> {
+    Bestellung findByPublicId(java.util.UUID publicId);
     //List<Bestellung> findAll();
     //list<BestellungDTO> findall();
 }

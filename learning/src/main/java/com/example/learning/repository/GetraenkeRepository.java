@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface GetraenkeRepository extends JpaRepository<Getraenke, Long> {
-
-    List<Getraenke> findAll();
+    Getraenke findByPublicId(java.util.UUID publicId);
+    //  List<Getraenke> findAll();
 
 }

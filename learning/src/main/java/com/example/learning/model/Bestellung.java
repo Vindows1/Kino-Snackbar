@@ -1,8 +1,10 @@
 package com.example.learning.model;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -10,17 +12,11 @@ import lombok.Data;
 public class Bestellung {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
-    private String wunsch_G;
-    private String wunsch_S;
-    private int G_menge;
-    private int S_menge;
+    private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "getraenke_id")
-    private Getraenke getraenk;
-
-    @ManyToOne
-    @JoinColumn(name = "snacks_id")
-    private Snacks snack;
+    @Column(unique = true, nullable = false)
+    private String publicId = java.util.UUID.randomUUID().toString();
+    @OneToMany(mappedBy = "bestellung", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BestellPosition> positionen = new ArrayList<>();
 }
+

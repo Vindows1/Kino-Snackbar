@@ -1,15 +1,15 @@
 import '../resources/navbar.css'
 export interface Getraenk{
-    Id: number;
+    Id: string;
     name: string;
     groeße: number;
     preis: number;
 }
-const imageMap: Record<number, string> = {
-    1: "https://cdn.pixabay.com/photo/2014/09/12/18/20/can-443123_1280.png",
-    2: "https://cdn.pixabay.com/photo/2023/08/12/02/43/soda-8184603_1280.png",
-    3: "https://cdn.pixabay.com/photo/2014/03/25/23/15/beer-298268_1280.png",
-    4: "https://cdn.pixabay.com/photo/2019/05/18/12/58/water-4211792_1280.png"
+const imageMap: Record<string, string> = {
+    '63609b8d-36f6-475b-aecc-1856278b80bc': "https://cdn.pixabay.com/photo/2014/09/12/18/20/can-443123_1280.png",
+    '59533375-892f-4d9c-98ca-4998ec3d1092': "https://cdn.pixabay.com/photo/2023/08/12/02/43/soda-8184603_1280.png",
+    '1f32b79c-04c3-4cca-b466-cfd8eeeedb47': "https://cdn.pixabay.com/photo/2014/03/25/23/15/beer-298268_1280.png",
+    'e88529ba-5268-47d8-bd9f-0f9f3f4e47c8': "https://cdn.pixabay.com/photo/2019/05/18/12/58/water-4211792_1280.png"
 };
 
 
