@@ -15,7 +15,7 @@ export const BestellungenList = (props: {bestellung: SingleBestellung[]}) => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
             <h2>Alle Bestellungen</h2>
             {props.bestellung.map(bestellung => (
-                <div key={bestellung.id} style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '5px', background: '#fff' }}>
+                <div key={bestellung.id} style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '5px'}}>
                     <h4>Bestellung: {bestellung.id.substring(0,8)}...</h4>
 
                     <ul style={{ listStyleType: 'none', padding: 0 }}>
