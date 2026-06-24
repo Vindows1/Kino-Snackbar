@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Time;
 import java.util.List;
 import java.util.UUID;
 
@@ -100,7 +101,6 @@ public class BestellungController {
                 System.out.println(" Bestellposition ohne Produkt-ID wurde empfangen und übersprungen.");
                 continue;
             }
-
             BestellPosition position = new BestellPosition();
             position.setMenge(posReq.getMenge());
             position.setBestellung(neueBestellung);

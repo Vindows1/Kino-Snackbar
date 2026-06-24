@@ -7,8 +7,8 @@ export const BestellungForm = ({ onBestellungCreated }: { onBestellungCreated: (
     const [warenkorb, setWarenkorb] = useState<any[]>([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/getraenke/all').then(res => res.json()).then(setGetraenke).catch(err => console.error(err));
-        fetch('http://localhost:8080/snacks/all').then(res => res.json()).then(setSnacks).catch(err => console.error(err));
+        fetch('http://localhost:8080/getraenke/all', { credentials: 'include' }).then(res => res.json()).then(setGetraenke).catch(err => console.error(err));
+        fetch('http://localhost:8080/snacks/all', { credentials: 'include' }).then(res => res.json()).then(setSnacks).catch(err => console.error(err));
     }, []);
 
     const zumWarenkorbHinzufuegen = (produkt: any, typ: "GETRAENK" | "SNACK") => {
@@ -55,7 +55,8 @@ export const BestellungForm = ({ onBestellungCreated }: { onBestellungCreated: (
             const response = await fetch("http://localhost:8080/bestellungen/add", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(bestellDaten)
+                body: JSON.stringify(bestellDaten),
+                credentials: 'include'
             });
 
             if (response.ok) {

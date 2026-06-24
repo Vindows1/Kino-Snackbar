@@ -7,7 +7,7 @@ export const Bestellung = () => {
     const [bestellung, setBestellung] = useState<any[]>([]);
 
     const ladeBestellungen = () => {
-        fetch('http://localhost:8080/bestellungen/all')
+        fetch('http://localhost:8080/bestellungen/all', { credentials: 'include' })
             .then(res => res.json())
             .then(data => setBestellung(data));
     };
