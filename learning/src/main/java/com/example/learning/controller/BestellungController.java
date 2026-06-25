@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Time;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,7 +29,6 @@ public class BestellungController {
     @GetMapping("/bestellungen/{publicId}")
     public ResponseEntity<BestellungDTO> getBestellung(@PathVariable String publicId) {
         java.util.UUID uuid = java.util.UUID.fromString(publicId);
-        //Bestellung bestellung = bestellungRepository.findByPublicIdOrderByErstellt_amDesc(UUID.fromString(publicId));
         Bestellung bestellung = bestellungRepository.findByPublicId(UUID.fromString(publicId));
         if (bestellung == null) {
             return ResponseEntity.notFound().build();
