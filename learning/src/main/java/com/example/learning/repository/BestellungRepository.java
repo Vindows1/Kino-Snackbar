@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface BestellungRepository extends JpaRepository<Bestellung, Long> {
+    //Bestellung findByPublicIdOrderByErstellt_amDesc(java.util.UUID publicId);
     Bestellung findByPublicId(java.util.UUID publicId);
+
     //List<Bestellung> findAll();
     //list<BestellungDTO> findall();
 }

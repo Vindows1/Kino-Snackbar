@@ -1,4 +1,5 @@
 import '../resources/navbar.css'
+import {Link} from "react-router-dom";
 export interface Getraenk{
     Id: string;
     name: string;
@@ -23,9 +24,11 @@ export const GetraenkeList=(props: {getraenke: Getraenk[]})=>{
         <>
             <div style={{display: 'flex', flexDirection: 'column', gap: '15px'}}>
                 <ul className={'nav-list'}>
-                    <li className={'nav-item'}><a className={'nav-link'} href={'http://localhost:5173/bestellungen/all'}>Bestellung</a></li>
-                    <li className={'nav-item'}><a className={'nav-link'} href={'http://localhost:5173/snacks/all'}>Snacks</a></li>
-                    <li className={'nav-item'}><a className={'nav-link'} href={'http://localhost:5173/getraenke/all'}>Getraenke</a></li>
+                    <ul className={'nav-list'}>
+                        <li className={'nav-item'}><Link className={'nav-link'} to={"/bestellungen/all"}>Bestellung</Link></li>
+                        <li className={'nav-item'}><Link className={'nav-link'} to={'/snacks/all'}>Snacks</Link></li>
+                        <li className={'nav-item'}><Link className={'nav-link'} to={'/getraenke/all'}>Getraenke</Link></li>
+                    </ul>
                 </ul>
                 <h2>Getraenke Auswahl</h2>
                 {korrigierteGetraenke.map(getraenk => (

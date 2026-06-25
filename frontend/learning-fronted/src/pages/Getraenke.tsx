@@ -7,7 +7,7 @@ export const Getraenke = () => {
     const [getraenke, setGetraenke] = useState<[]>([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/getraenke/all')
+        fetch('http://localhost:8080/getraenke/all', { credentials: 'include' })
             .then(res => res.json())
             .then(data => setGetraenke(data))
     }, []);

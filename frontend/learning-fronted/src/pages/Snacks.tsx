@@ -7,7 +7,7 @@ export const Snacks = () => {
     const [snacks, setSnacks] = useState<[]>([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/snacks/all')
+        fetch('http://localhost:8080/snacks/all', { credentials: 'include' })
             .then(res => res.json())
             .then(data => setSnacks(data))
     }, []);

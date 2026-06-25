@@ -1,18 +1,36 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export const BestellungForm = ({ onBestellungCreated }: { onBestellungCreated: () => void }) => {
     const [getraenke, setGetraenke] = useState<any[]>([]);
     const [snacks, setSnacks] = useState<any[]>([]);
 
     const [warenkorb, setWarenkorb] = useState<any[]>([]);
-
     useEffect(() => {
-        fetch('http://localhost:8080/getraenke/all').then(res => res.json()).then(setGetraenke).catch(err => console.error(err));
-        fetch('http://localhost:8080/snacks/all').then(res => res.json()).then(setSnacks).catch(err => console.error(err));
+        fetch('http://localhost:8080/getraenke/all', { credentials: 'include' })
+            .then(res => {
+                if (!res.ok) throw new Error("Fehler beim Laden oder keine Rechte");
+                return res.json();
+            })
+            .then(setGetraenke)
+            .catch(err => {
+                console.error(err);
+                setGetraenke([]);
+            });
+
+        fetch('http://localhost:8080/snacks/all', { credentials: 'include' })
+            .then(res => {
+                if (!res.ok) throw new Error("Fehler beim Laden oder keine Rechte");
+                return res.json();
+            })
+            .then(setSnacks)
+            .catch(err => {
+                console.error(err);
+                setSnacks([]);
+            });
     }, []);
 
     const zumWarenkorbHinzufuegen = (produkt: any, typ: "GETRAENK" | "SNACK") => {
-        // HIER IST DER FIX: Wir prüfen auf publicId ODER id
         const sichereId = produkt.publicId || produkt.id;
 
         if (!sichereId) {
@@ -55,7 +73,8 @@ export const BestellungForm = ({ onBestellungCreated }: { onBestellungCreated: (
             const response = await fetch("http://localhost:8080/bestellungen/add", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(bestellDaten)
+                body: JSON.stringify(bestellDaten),
+                credentials: 'include'
             });
 
             if (response.ok) {
@@ -74,12 +93,9 @@ export const BestellungForm = ({ onBestellungCreated }: { onBestellungCreated: (
     return (
         <>
             <ul className={'nav-list'}>
-                <li className={'nav-item'}><a className={'nav-link'}
-                                              href={'http://localhost:5173/bestellungen/all'}>Bestellung</a></li>
-                <li className={'nav-item'}><a className={'nav-link'}
-                                              href={'http://localhost:5173/snacks/all'}>Snacks</a></li>
-                <li className={'nav-item'}><a className={'nav-link'}
-                                              href={'http://localhost:5173/getraenke/all'}>Getraenke</a></li>
+                <li className={'nav-item'}><Link className={'nav-link'} to={"/bestellungen/all"}>Bestellung</Link></li>
+                <li className={'nav-item'}><Link className={'nav-link'} to={'/snacks/all'}>Snacks</Link></li>
+                <li className={'nav-item'}><Link className={'nav-link'} to={'/getraenke/all'}>Getraenke</Link></li>
             </ul>
             <div style={{
                 display: "flex",
