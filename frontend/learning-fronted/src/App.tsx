@@ -93,7 +93,7 @@ export const App = () => {
     }
 
     return (
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px" }}>
+        <div style={{ padding: "20px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", borderBottom: "1px solid #eee", paddingBottom: "10px" }}>
                 <h1>Kino Snack-Shop</h1>
                 <div>
