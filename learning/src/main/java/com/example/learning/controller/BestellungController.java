@@ -30,6 +30,7 @@ public class BestellungController {
     @GetMapping("/bestellungen/{publicId}")
     public ResponseEntity<BestellungDTO> getBestellung(@PathVariable String publicId) {
         java.util.UUID uuid = java.util.UUID.fromString(publicId);
+        //Bestellung bestellung = bestellungRepository.findByPublicIdOrderByErstellt_amDesc(UUID.fromString(publicId));
         Bestellung bestellung = bestellungRepository.findByPublicId(UUID.fromString(publicId));
         if (bestellung == null) {
             return ResponseEntity.notFound().build();
