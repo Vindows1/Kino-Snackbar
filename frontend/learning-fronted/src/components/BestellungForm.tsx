@@ -49,8 +49,32 @@ export const BestellungForm = ({ onBestellungCreated }: { onBestellungCreated: (
             } else {
                 return [
                     ...vorherigerWarenkorb,
-                    { produktId: sichereId, name: produkt.name, typ: typ, menge: 1 }
+                    { produktId: sichereId, name: produkt.name, typ: typ, menge: 1, preis: produkt.preis }
                 ];
+            }
+        });
+    };
+    const ausWarenkorbEntfernen = (produkt: any) => {
+        const sichereId = produkt.publicId || produkt.id;
+
+        if (!sichereId) {
+            console.error("Fehler: Das Produkt hat keine ID!", produkt);
+            return;
+        }
+
+        setWarenkorb((vorherigerWarenkorb) => {
+            const existiertBereits = vorherigerWarenkorb.find(item => item.produktId === sichereId);
+
+            if (!existiertBereits) {
+                return vorherigerWarenkorb;
+            }
+
+            if (existiertBereits.menge <= 1) {
+              return vorherigerWarenkorb.filter(item => item.produktId !== sichereId);
+            } else {
+                return vorherigerWarenkorb.map(item =>
+                    item.produktId === sichereId ? { ...item, menge: item.menge - 1 } : item
+                );
             }
         });
     };
@@ -89,7 +113,7 @@ export const BestellungForm = ({ onBestellungCreated }: { onBestellungCreated: (
             console.error("Netzwerkfehler:", error);
         }
     };
-
+    const gesamtpreis = warenkorb.reduce((summe, item) => summe + (item.menge * item.preis), 0);
     return (
         <>
             <ul className={'nav-list'}>
@@ -106,12 +130,14 @@ export const BestellungForm = ({ onBestellungCreated }: { onBestellungCreated: (
                 position: 'sticky'
             }}>
                 <div style={{ flex: 1 }}>
-                    <h2>Getränke</h2>
+                    <h2>Getraenke</h2>
                     {getraenke.map(g => {
                         const sichereId = g.publicId || g.id;
                         return (
                             <div key={sichereId} style={{ margin: "5px 0" }}>
                                 {g.name} ({g.preis}€) <button onClick={() => zumWarenkorbHinzufuegen(g, "GETRAENK")}>+</button>
+                                <button onClick={() => ausWarenkorbEntfernen(g)}>-</button>
+
                             </div>
                         );
                     })}
@@ -122,6 +148,8 @@ export const BestellungForm = ({ onBestellungCreated }: { onBestellungCreated: (
                         return (
                             <div key={sichereId} style={{ margin: "5px 0" }}>
                                 {s.name} ({s.preis}€) <button onClick={() => zumWarenkorbHinzufuegen(s, "SNACK")}>+</button>
+                          <button onClick={() => ausWarenkorbEntfernen(s)}>-</button>
+
                             </div>
                         );
                     })}
@@ -137,13 +165,16 @@ export const BestellungForm = ({ onBestellungCreated }: { onBestellungCreated: (
                 }}>
                     <h3>Aktueller Warenkorb</h3>
                     {warenkorb.length === 0 ? <p>Leer</p> : (
-                        <ul>
-                            {warenkorb.map((item, i) => (
-                                <li key={i}>{item.menge}x {item.name} ({item.typ})</li>
-                            ))}
-                        </ul>
+                        <>
+                            <ul>
+                                {warenkorb.map((item, i) => (
+                                    <li key={i}>{item.menge}x {item.name}  - {(item.menge * item.preis).toFixed(2)}€</li>
+                                ))}
+                            </ul>
+                            <h4>Gesamtpreis: {gesamtpreis.toFixed(2)}€</h4>
+                        </>
                     )}
-                    <button onClick={bestellen} disabled={warenkorb.length === 0} style={{ color: 'black'}}>
+                    <button onClick={bestellen} disabled={warenkorb.length === 0}>
                         Kostenpflichtig Bestellen
                     </button>
                 </div>
