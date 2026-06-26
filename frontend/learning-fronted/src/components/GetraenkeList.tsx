@@ -1,5 +1,6 @@
 import '../resources/navbar.css'
 import {Link} from "react-router-dom";
+import { useWarenkorb } from '../context/WarenkorbContext';
 export interface Getraenk{
     Id: string;
     name: string;
@@ -15,7 +16,7 @@ const imageMap: Record<string, string> = {
 
 
 export const GetraenkeList=(props: {getraenke: Getraenk[]})=>{
-
+    const { zumWarenkorbHinzufuegen } = useWarenkorb();
     const korrigierteGetraenke = props.getraenke.map(g => ({
         ...g,
         Id: (g as any).id
@@ -54,6 +55,7 @@ export const GetraenkeList=(props: {getraenke: Getraenk[]})=>{
                             <span>{getraenk.name}</span>
                             <span style={{textAlign: 'right'}}>{getraenk.groeße}l</span>
                             <span style={{textAlign: 'right'}}>{getraenk.preis}€</span>
+                            <button onClick={() => zumWarenkorbHinzufuegen(getraenk, "GETRAENK")} style={{ padding: '5px', cursor: 'pointer' }}>+</button>
                         </div>
                     )
                 )}
