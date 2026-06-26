@@ -1,5 +1,6 @@
 import '../resources/navbar.css'
 import {Link} from "react-router-dom";
+import { useWarenkorb } from '../context/WarenkorbContext';
 export interface Snack{
     Id: string;
     name: string;
@@ -12,6 +13,7 @@ const imageMap: Record<string, string> = {
     '97e9082d-a1a6-43c7-a256-db8cd3a2c4c7': "https://cdn.pixabay.com/photo/2022/04/07/17/15/potato-chips-7118004_1280.png"
 };
 export const SnackList=(props: {snacks: Snack[]})=>{
+    const { zumWarenkorbHinzufuegen } = useWarenkorb();
     const korrigierteSnacks = props.snacks.map(g => ({
         ...g,
         Id: (g as any).id
@@ -49,6 +51,7 @@ export const SnackList=(props: {snacks: Snack[]})=>{
                             )}
                             <span>{snack.name}</span>
                             <span>{snack.preis}€</span>
+                            <button onClick={() => zumWarenkorbHinzufuegen(snack, "SNACK")} style={{ padding: '5px', cursor: 'pointer' }}>+</button>
                         </div>
                     )
                 )}

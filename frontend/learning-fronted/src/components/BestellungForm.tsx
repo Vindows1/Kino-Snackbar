@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useWarenkorb } from "../context/WarenkorbContext.tsx";
 
 export const BestellungForm = ({ onBestellungCreated }: { onBestellungCreated: () => void }) => {
     const [getraenke, setGetraenke] = useState<any[]>([]);
     const [snacks, setSnacks] = useState<any[]>([]);
 
-    const [warenkorb, setWarenkorb] = useState<any[]>([]);
+    // Hier holst du alles sauber aus dem globalen Context
+    const { warenkorb, zumWarenkorbHinzufuegen, warenkorbLeeren } = useWarenkorb();
+
     useEffect(() => {
         fetch('http://localhost:8080/getraenke/all', { credentials: 'include' })
             .then(res => {
@@ -30,30 +33,6 @@ export const BestellungForm = ({ onBestellungCreated }: { onBestellungCreated: (
             });
     }, []);
 
-    const zumWarenkorbHinzufuegen = (produkt: any, typ: "GETRAENK" | "SNACK") => {
-        const sichereId = produkt.publicId || produkt.id;
-
-        if (!sichereId) {
-            console.error("Fehler: Das Produkt hat keine ID!", produkt);
-            alert("Fehler: Produkt kann nicht hinzugefügt werden, da die ID fehlt.");
-            return;
-        }
-
-        setWarenkorb((vorherigerWarenkorb) => {
-            const existiertBereits = vorherigerWarenkorb.find(item => item.produktId === sichereId);
-
-            if (existiertBereits) {
-                return vorherigerWarenkorb.map(item =>
-                    item.produktId === sichereId ? { ...item, menge: item.menge + 1 } : item
-                );
-            } else {
-                return [
-                    ...vorherigerWarenkorb,
-                    { produktId: sichereId, name: produkt.name, typ: typ, menge: 1 }
-                ];
-            }
-        });
-    };
 
     const bestellen = async () => {
         if (warenkorb.length === 0) {
@@ -79,8 +58,7 @@ export const BestellungForm = ({ onBestellungCreated }: { onBestellungCreated: (
 
             if (response.ok) {
                 alert("Bestellung erfolgreich abgesendet!");
-                setWarenkorb([]);
-
+                warenkorbLeeren(); // Warenkorb über Context leeren
                 onBestellungCreated();
             } else {
                 alert("Fehler beim Absenden der Bestellung.");

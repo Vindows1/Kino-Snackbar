@@ -4,6 +4,7 @@ import {Getraenke} from './pages/Getraenke.tsx'
 import {Snacks} from './pages/Snacks.tsx'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import {Bestellung} from "./pages/Bestellung.tsx";
+import { WarenkorbProvider } from './context/WarenkorbContext.tsx';
 
 export const App = () => {
     // 1. Zustandsverwaltung (State) für den Login
@@ -103,9 +104,9 @@ export const App = () => {
                     </button>
                 </div>
             </div>
-
-            <RouterProvider router={router}/>
-´
+            <WarenkorbProvider>
+                <RouterProvider router={router}/>
+            </WarenkorbProvider>
         </div>
     );
 };
